@@ -2,6 +2,8 @@
 const EMAILJS_PUBLIC_KEY = "odTbFAwMDih_6SlqS";
 const EMAILJS_SERVICE_ID = "service_og4k18q";
 const EMAILJS_TEMPLATE_ID = "template_n6djirb";
+// шаблон за известие „Симона отвори поканата“ (изпраща се до Влади)
+const EMAILJS_OPENED_TEMPLATE_ID = "template_tbbdzk7";
 
 const YT_VIDEO_ID = "azJBP0KT30o";
 
@@ -115,10 +117,28 @@ muteBtn.addEventListener("click", function () {
   updateMuteBtn();
 });
 
+// ====== известие „Симона отвори поканата“ ======
+function notifyOpened() {
+  if (
+    typeof emailjs === "undefined" ||
+    EMAILJS_OPENED_TEMPLATE_ID === "YOUR_OPENED_TEMPLATE_ID"
+  ) {
+    return;
+  }
+  emailjs
+    .send(EMAILJS_SERVICE_ID, EMAILJS_OPENED_TEMPLATE_ID, {
+      time: new Date().toLocaleString("bg-BG"),
+    })
+    .catch(function (err) {
+      console.error("EmailJS opened-notify error:", err);
+    });
+}
+
 // ====== отваряне на поканата ======
 openBtn.addEventListener("click", function () {
   musicRequested = true;
   startMusic();
+  notifyOpened();
   showScreen(screenInvite);
 });
 
