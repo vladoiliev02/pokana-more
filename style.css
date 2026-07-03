@@ -1,0 +1,349 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --sea-deep: #0e5c8a;
+  --sea: #1a8fc9;
+  --sea-light: #7fd4f0;
+  --sand: #ffe9c7;
+  --sunset: #ff9b6a;
+  --coral: #ff6b6b;
+  --accept: #2ecc71;
+  --accept-dark: #27ae60;
+  --ink: #1e3a4f;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: "Georgia", "Times New Roman", serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, #ffd89b 0%, #ff9b6a 25%, #7fd4f0 55%, #1a8fc9 100%);
+  position: relative;
+}
+
+/* ---------- floating decorations ---------- */
+.floaters {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floater {
+  position: absolute;
+  bottom: -3rem;
+  font-size: 1.6rem;
+  opacity: 0.7;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.7; }
+  100% { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+}
+
+/* ---------- hidden YouTube player ---------- */
+#yt-player {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  left: -9999px;
+  top: 0;
+}
+
+/* ---------- mute button ---------- */
+.mute-btn {
+  position: fixed;
+  top: 0.8rem;
+  right: 0.8rem;
+  z-index: 50;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- screens ---------- */
+.screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* ---------- envelope landing ---------- */
+.envelope-wrap {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 12px 40px rgba(14, 92, 138, 0.35);
+  max-width: 24rem;
+}
+
+.envelope {
+  font-size: 5rem;
+  animation: bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-14px) rotate(3deg); }
+}
+
+.envelope-title {
+  margin-top: 0.8rem;
+  font-size: 1.9rem;
+  color: var(--sea-deep);
+}
+
+.envelope-sub {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 1.05rem;
+}
+
+/* ---------- invitation card ---------- */
+.card {
+  background: #fffdf7;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(14, 92, 138, 0.4);
+  max-width: 34rem;
+  width: 100%;
+  padding: 2rem 1.8rem;
+  position: relative;
+  margin: auto;
+}
+
+.card-header {
+  text-align: center;
+  border-bottom: 2px dashed var(--sea-light);
+  padding-bottom: 1rem;
+  position: relative;
+}
+
+.stamp {
+  position: absolute;
+  top: -1rem;
+  right: -0.6rem;
+  transform: rotate(12deg);
+  border: 3px solid var(--coral);
+  color: var(--coral);
+  font-weight: bold;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  opacity: 0.85;
+  font-family: "Courier New", monospace;
+}
+
+.doc-no {
+  font-family: "Courier New", monospace;
+  font-size: 0.8rem;
+  color: #7a8a96;
+  letter-spacing: 1px;
+}
+
+.card-header h1 {
+  font-size: 1.7rem;
+  color: var(--sea-deep);
+  margin: 0.4rem 0 0.3rem;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--sea);
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 1.2rem 0 0.4rem;
+  line-height: 1.65;
+  font-size: 1.02rem;
+}
+
+.card-body p {
+  margin-bottom: 0.8rem;
+}
+
+.fine-print {
+  font-size: 0.85rem;
+  color: #5a6b78;
+  background: #f2f9fd;
+  border-left: 4px solid var(--sea-light);
+  padding: 0.7rem 0.9rem;
+  border-radius: 0 8px 8px 0;
+  line-height: 1.8;
+}
+
+.question {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: bold;
+  color: var(--sea-deep);
+  margin-top: 1rem;
+}
+
+/* ---------- buttons ---------- */
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 0.8rem;
+  min-height: 4.5rem;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.85rem 1.7rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--sea), var(--sea-deep));
+  color: #fff;
+  font-size: 1.2rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4px 14px rgba(26, 143, 201, 0.4); }
+  50%      { box-shadow: 0 4px 26px rgba(26, 143, 201, 0.8); }
+}
+
+.btn-accept {
+  background: linear-gradient(135deg, var(--accept), var(--accept-dark));
+  color: #fff;
+}
+
+.btn-accept:hover {
+  transform: scale(1.08);
+}
+
+.btn-reject {
+  background: linear-gradient(135deg, #b0bec5, #78909c);
+  color: #fff;
+  /* becomes position:fixed via JS when it starts dodging */
+  transition: left 0.25s ease-out, top 0.25s ease-out, transform 0.15s ease;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---------- accepted screen ---------- */
+.card-center {
+  text-align: center;
+}
+
+.big-emoji {
+  font-size: 3.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.hearts {
+  animation: bounce 1.8s ease-in-out infinite;
+  margin-top: 0.8rem;
+}
+
+.card-center h1 {
+  color: var(--sea-deep);
+  margin-bottom: 1rem;
+}
+
+.accepted-text {
+  font-size: 1.08rem;
+  line-height: 1.6;
+  margin-bottom: 0.9rem;
+}
+
+.email-status {
+  font-size: 0.85rem;
+  color: #7a8a96;
+  min-height: 1.2rem;
+}
+
+.email-status .retry-link {
+  color: var(--sea);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------- confetti ---------- */
+.confetti {
+  position: fixed;
+  top: -2rem;
+  z-index: 100;
+  font-size: 1.4rem;
+  pointer-events: none;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(115vh) rotate(360deg);
+  }
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 480px) {
+  .card {
+    padding: 1.5rem 1.1rem;
+  }
+
+  .card-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .card-body {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.4rem;
+  }
+
+  .stamp {
+    right: 0;
+  }
+}

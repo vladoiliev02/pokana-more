@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Покана 💌</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating decorations -->
+  <div class="floaters" aria-hidden="true"></div>
+
+  <!-- Hidden YouTube player -->
+  <div id="yt-player"></div>
+
+  <!-- Mute toggle -->
+  <button id="mute-btn" class="mute-btn hidden" aria-label="Звук">🔊</button>
+
+  <!-- Screen 1: Envelope landing -->
+  <section id="screen-envelope" class="screen active">
+    <div class="envelope-wrap">
+      <div class="envelope">💌</div>
+      <h1 class="envelope-title">Имаш покана!</h1>
+      <p class="envelope-sub">Специална пратка за <strong>Симона</strong></p>
+      <button id="open-btn" class="btn btn-primary">Отвори поканата ✨</button>
+    </div>
+  </section>
+
+  <!-- Screen 2: Invitation -->
+  <section id="screen-invite" class="screen">
+    <div class="card">
+      <div class="card-header">
+        <div class="stamp">ОФИЦИАЛНО</div>
+        <p class="doc-no">Договор № 1 / 2026 г.</p>
+        <h1>Покана за лятна почивка</h1>
+        <p class="subtitle">🌊 Созопол · 4 – 12 юли 2026 г. ☀️</p>
+      </div>
+
+      <div class="card-body">
+        <p>Скъпа <strong>Симона</strong>,</p>
+        <p>
+          С настоящия документ долуподписаният <strong>Влади</strong>
+          (наричан по-долу <em>„Организаторът“</em>) тържествено те кани
+          на <strong>девет дни</strong> море, слънце, смях и незабравими
+          мигове само за нас двамата. 🏖️
+        </p>
+        <p class="fine-print">
+          Чл. 1. Присъствието на усмивки е задължително.<br>
+          Чл. 2. Организаторът поема ангажимент за страхотно прекарване.<br>
+          Чл. 3. Пълните условия се изпращат по имейл след приемане.
+        </p>
+        <p class="question">Приемаш ли? 🥰</p>
+      </div>
+
+      <div class="buttons" id="buttons-area">
+        <button id="accept-btn" class="btn btn-accept">Приемам ✅</button>
+        <button id="reject-btn" class="btn btn-reject">Отказвам ❌</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screen 3: Accepted -->
+  <section id="screen-accepted" class="screen">
+    <div class="card card-center">
+      <div class="big-emoji">🎉</div>
+      <h1>Поканата е приета!</h1>
+      <p class="accepted-text">
+        Договорът влезе в сила незабавно и е <strong>неотменим</strong>. 😌
+      </p>
+      <p class="accepted-text">
+        📧 Провери имейла си — там те очаква
+        <strong>официалният план на почивката</strong>
+        с всички условия!
+      </p>
+      <p id="email-status" class="email-status"></p>
+      <div class="big-emoji hearts">❤️ 🌊 ☀️</div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
