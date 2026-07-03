@@ -38,6 +38,54 @@ for (let i = 0; i < 14; i++) {
   floatersWrap.appendChild(f);
 }
 
+// ====== плаващи полароид снимки ======
+const PHOTOS = [
+  "photos/web/IMG_1869.jpg",
+  "photos/web/IMG_2033.jpg",
+  "photos/web/IMG_2826.jpg",
+  "photos/web/IMG_3359.jpg",
+  "photos/web/IMG_5012.jpg",
+  "photos/web/IMG_6364.jpg",
+];
+// фиксирани „ъглови“ позиции, за да не закриват картата в центъра
+const PHOTO_SLOTS = [
+  { top: "3%", left: "2%", rot: -7 },
+  { top: "5%", right: "2%", rot: 6 },
+  { top: "40%", left: "1%", rot: 5 },
+  { top: "42%", right: "1%", rot: -6 },
+  { bottom: "3%", left: "3%", rot: 7 },
+  { bottom: "4%", right: "3%", rot: -5 },
+];
+const polaroidsWrap = document.querySelector(".polaroids");
+const polaroidEls = [];
+PHOTOS.forEach(function (src, i) {
+  const slot = PHOTO_SLOTS[i % PHOTO_SLOTS.length];
+  const el = document.createElement("figure");
+  el.className = "polaroid";
+  if (slot.top) el.style.top = slot.top;
+  if (slot.bottom) el.style.bottom = slot.bottom;
+  if (slot.left) el.style.left = slot.left;
+  if (slot.right) el.style.right = slot.right;
+  el.style.setProperty("--rot", slot.rot + "deg");
+  el.style.setProperty("--swing", (Math.random() < 0.5 ? -1 : 1) * (3 + Math.random() * 4) + "deg");
+  el.style.setProperty("--dur", 5 + Math.random() * 4 + "s");
+  el.style.setProperty("--delay", Math.random() * 2 + "s");
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = "";
+  img.loading = "eager";
+  el.appendChild(img);
+  polaroidsWrap.appendChild(el);
+  polaroidEls.push(el);
+});
+// плавно появяване една по една
+polaroidEls.forEach(function (el, i) {
+  setTimeout(function () {
+    el.classList.add("show");
+  }, 300 + i * 220);
+});
+
 // ====== музика (YouTube IFrame API) ======
 let ytPlayer = null;
 let ytReady = false;

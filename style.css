@@ -52,6 +52,57 @@ body {
   100% { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
 }
 
+/* ---------- floating photo polaroids ---------- */
+.polaroids {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.polaroid {
+  position: absolute;
+  width: 128px;
+  background: #fff;
+  padding: 8px 8px 26px;
+  border-radius: 4px;
+  box-shadow: 0 8px 22px rgba(14, 92, 138, 0.35);
+  transform: rotate(var(--rot, -6deg));
+  animation: sway var(--dur, 6s) ease-in-out var(--delay, 0s) infinite alternate;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.polaroid.show {
+  opacity: 0.96;
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 2px;
+  background: #eaf6fc;
+}
+
+.polaroid .caption {
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: "Georgia", serif;
+  font-size: 0.72rem;
+  color: #6b7d89;
+}
+
+@keyframes sway {
+  from { transform: rotate(var(--rot, -6deg)) translateY(0); }
+  to   { transform: rotate(calc(var(--rot, -6deg) + var(--swing, 4deg))) translateY(-10px); }
+}
+
 /* ---------- hidden YouTube player ---------- */
 #yt-player {
   position: fixed;
@@ -345,5 +396,19 @@ body {
 
   .stamp {
     right: 0;
+  }
+
+  .polaroid {
+    width: 92px;
+    padding: 6px 6px 20px;
+  }
+
+  .polaroid img {
+    height: 68px;
+  }
+
+  .polaroid .caption {
+    font-size: 0.6rem;
+    bottom: 4px;
   }
 }
