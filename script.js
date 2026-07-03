@@ -75,11 +75,31 @@ window.onYouTubeIframeAPIReady = function () {
   });
 };
 
+// iOS Safari разрешава звук само по време на самото докосване и обикновено
+// изисква стартиране в режим „mute“, след което може да се пусне звукът.
+// Затова пускаме заглушено веднага в жеста, после отглушаваме, и повтаряме
+// опитите докато плеърът стане готов.
+let startAttempts = 0;
 function startMusic() {
-  if (!ytReady || !ytPlayer) return;
-  ytPlayer.setVolume(70);
-  ytPlayer.playVideo();
   muteBtn.classList.remove("hidden");
+  if (!ytReady || !ytPlayer || typeof ytPlayer.playVideo !== "function") {
+    if (startAttempts++ < 40) setTimeout(startMusic, 150);
+    return;
+  }
+  ytPlayer.setVolume(70);
+  // старт заглушено (позволено на iOS), после отглушаване
+  ytPlayer.mute();
+  ytPlayer.playVideo();
+  if (!muted) {
+    setTimeout(function () {
+      ytPlayer.unMute();
+      ytPlayer.setVolume(70);
+    }, 350);
+  }
+}
+
+function updateMuteBtn() {
+  muteBtn.textContent = muted ? "🔇" : "🔊";
 }
 
 muteBtn.addEventListener("click", function () {
@@ -87,11 +107,12 @@ muteBtn.addEventListener("click", function () {
   muted = !muted;
   if (muted) {
     ytPlayer.mute();
-    muteBtn.textContent = "🔇";
   } else {
     ytPlayer.unMute();
-    muteBtn.textContent = "🔊";
+    ytPlayer.setVolume(70);
+    ytPlayer.playVideo();
   }
+  updateMuteBtn();
 });
 
 // ====== отваряне на поканата ======
