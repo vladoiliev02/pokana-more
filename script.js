@@ -1,7 +1,7 @@
 // ====== EmailJS конфигурация ======
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "odTbFAwMDih_6SlqS";
+const EMAILJS_SERVICE_ID = "service_og4k18q";
+const EMAILJS_TEMPLATE_ID = "template_n6djirb";
 
 const YT_VIDEO_ID = "azJBP0KT30o";
 
